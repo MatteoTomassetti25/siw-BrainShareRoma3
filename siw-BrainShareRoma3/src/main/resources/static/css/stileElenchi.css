@@ -1,0 +1,85 @@
+<style>
+    body {
+        background-color: #f0f4f8; /* Grigio chiaro di fallback */
+        background-image: url("https://www.uniroma3.it/assets/img/uniroma3_logo.png"); /* Immagine di sfondo */
+        background-size: cover; /* Fa in modo che l'immagine copra tutta la pagina */
+        background-position: center; /* Centra l'immagine */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        font-family: Arial, sans-serif;
+        padding: 20px;
+    }
+
+    .container {
+        background-color: #ffffff;
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        max-width: 1000px; /* Larghezza massima */
+        width: 90%; /* Larghezza relativa per adattarsi meglio */
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 32px; /* Font più grande */
+        margin-bottom: 30px; /* Margine aumentato */
+        color: #333;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 0 auto 30px auto; /* Centra la tabella orizzontalmente */
+    }
+
+    th, td {
+        padding: 15px;
+        text-align: center; /* Allinea il testo al centro */
+        border-bottom: 1px solid #d1dbe1; /* Blu chiaro */
+    }
+
+    th {
+        background-color: #5d8a98; /* Blu chiaro */
+        color: white;
+        font-size: 18px;
+    }
+
+    td {
+        font-size: 16px;
+    }
+
+    .btn {
+        background-color: #5d8a98; /* Blu chiaro */
+        color: white;
+        padding: 10px 20px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-size: 16px;
+        margin: 5px;
+        display: inline-block;
+    }
+
+    .btn:hover {
+        background-color: #4a6a73; /* Blu scuro al hover */
+    }
+
+    .btn-warning {
+        background-color: #ffc107; /* Colore giallo per il pulsante Recensisci */
+        color: #333;
+    }
+
+    .btn-warning:hover {
+        background-color: #e0a800; /* Giallo scuro al hover */
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    .mt-4 {
+        margin-top: 20px;
+    }
+</style>

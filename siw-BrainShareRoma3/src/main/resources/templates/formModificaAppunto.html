@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nuovo Appunto</title>
+    <link rel="icon" href="/images/icons8-punta-della-matita-32.png" type="image/png" sizes="40x40">
+    <style>
+        body {
+            background-color: #f0f4f8;
+            background-image: url("https://www.uniroma3.it/assets/img/uniroma3_logo.png");
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+            width: 90%;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        h1 {
+            font-size: 36px;
+            margin-bottom: 40px;
+            color: #333;
+        }
+        .form-label {
+            font-size: 20px;
+            color: #333;
+            text-align: left;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-control {
+            font-size: 18px;
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid #d1dbe1;
+            margin-bottom: 25px;
+            width: 100%;
+        }
+        .form-control:focus {
+            border-color: #5d8a98;
+            box-shadow: 0 0 5px rgba(93, 138, 152, 0.5);
+        }
+        .btn {
+            background-color: #5d8a98;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 12px;
+            font-size: 18px;
+            margin: 10px;
+            display: inline-block;
+        }
+        .btn:hover {
+            background-color: #4a6a73;
+        }
+        .alert {
+            background-color: #f8d7da;
+            color: #721c24;
+            border-color: #f5c6cb;
+            margin-bottom: 20px;
+            font-size: 18px;
+            padding: 15px;
+        }
+        .error {
+            color: red;
+            font-size: 16px;
+            margin-top: 5px;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+        }
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Inserisci un Nuovo Appunto</h1>
+
+        <!-- Mostra un messaggio di errore generale se presente -->
+        <div th:if="${messaggioErrore}" class="alert" role="alert">
+            <p th:text="${messaggioErrore}"></p>
+        </div>
+
+        <!-- Form per l'inserimento del nuovo appunto -->
+        <form th:action="@{/salvaAppunto}" th:object="${appunto}" method="post">
+
+            <!-- Campo nascosto per l'utente autenticato -->
+            <input type="hidden" th:field="*{utente.id}" />
+
+            <!-- Campo Nome -->
+            <div class="mb-3">
+                <label for="nome" class="form-label">Titolo Appunto:</label>
+                <input type="text" id="nome" th:field="*{nome}" class="form-control" />
+                <span th:if="${#fields.hasErrors('nome')}" 
+                      th:errors="*{nome}" 
+                      class="error"></span>
+            </div>
+
+            <!-- Campo Contenuto -->
+            <div class="mb-3">
+                <label for="contenuto" class="form-label">Contenuto Appunto:</label>
+                <textarea id="contenuto" th:field="*{contenuto}" class="form-control" rows="5" required></textarea>
+                <span th:if="${#fields.hasErrors('contenuto')}" 
+                      th:errors="*{contenuto}" 
+                      class="error"></span>
+            </div>
+
+            <!-- Campo Materia (senza validazione) -->
+            <div class="mb-3">
+                <label for="materia" class="form-label">Materia:</label>
+                <select id="materia" th:field="*{materia.id}" class="form-control">
+                    <option value="" disabled selected>Seleziona una materia</option>
+                    <option th:each="materia : ${materie}" 
+                            th:value="${materia.id}" 
+                            th:text="${materia.nome}"></option>
+                </select>
+            </div>
+
+            <!-- Pulsanti di Azione -->
+            <button type="submit" class="btn btn-success">Salva Appunto</button>
+            <a href="/" class="btn btn-secondary">Annulla</a>
+        </form>
+    </div>
+</body>
+</html>

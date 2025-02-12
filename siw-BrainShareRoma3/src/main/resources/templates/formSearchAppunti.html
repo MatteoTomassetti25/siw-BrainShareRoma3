@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ricerca Appunti</title>
+	<link rel="icon" href="/images/icons8-punta-della-matita-32.png" type="image/png" sizes="40x40">
+	<style>
+	        body {
+	            background-color: #f0f4f8; /* Grigio chiaro di fallback */
+	            background-image: url("https://www.uniroma3.it/assets/img/uniroma3_logo.png"); /* Immagine di sfondo */
+	            background-size: cover; /* Fa in modo che l'immagine copra tutta la pagina */
+	            background-position: center; /* Centra l'immagine */
+	            display: flex;
+	            flex-direction: column; /* Allinea gli elementi verticalmente */
+	            justify-content: center;
+	            align-items: center;
+	            min-height: 100vh;
+	            margin: 0;
+	            font-family: Arial, sans-serif;
+	            padding: 20px;
+	        }
+
+	        .container {
+	            background-color: #ffffff;
+	            padding: 40px; /* Padding aumentato */
+	            border-radius: 20px; /* Bordi più stondati */
+	            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+	            max-width: 900px; /* Larghezza massima */
+	            width: 90%; /* Larghezza relativa per adattarsi meglio */
+	            text-align: center;
+	            margin-bottom: 30px; /* Margine inferiore per separare dal pulsante */
+	        }
+
+	        h1 {
+	            font-size: 36px; /* Font più grande */
+	            margin-bottom: 40px; /* Margine aumentato */
+	            color: #333;
+	        }
+
+	        .form-label {
+	            font-size: 20px; /* Font più grande per le etichette */
+	            color: #333;
+	            text-align: left; /* Allinea le etichette a sinistra */
+	            display: block; /* Rende le etichette block per il corretto allineamento */
+	            margin-bottom: 5px; /* Spazio minimo tra etichetta e campo */
+	        }
+
+	        .form-control {
+	            font-size: 18px; /* Font più grande per i campi */
+	            padding: 15px; /* Più spazio interno */
+	            border-radius: 12px; /* Bordi più stondati */
+	            border: 1px solid #d1dbe1;
+	            margin-bottom: 25px;
+	            width: 100%; /* Rende il campo di input più largo */
+	        }
+
+	        .form-control:focus {
+	            border-color: #5d8a98;
+	            box-shadow: 0 0 5px rgba(93, 138, 152, 0.5);
+	        }
+
+	        .btn {
+	            background-color: #5d8a98; /* Blu chiaro */
+	            color: white;
+	            padding: 15px 30px; /* Più grande per i pulsanti */
+	            border-radius: 12px; /* Bordi più stondati */
+	            font-size: 18px; /* Font più grande per i pulsanti */
+	            margin: 10px;
+	            display: inline-block;
+	        }
+
+	        .btn:hover {
+	            background-color: #4a6a73; /* Blu scuro al hover */
+	        }
+
+	        .alert {
+	            background-color: #f8d7da; /* Colore di sfondo rosso per l'errore */
+	            color: #721c24; /* Colore del testo rosso scuro */
+	            border-color: #f5c6cb; /* Colore del bordo dell'alert */
+	            margin-bottom: 20px;
+	            font-size: 18px; /* Font più grande per il messaggio di errore */
+	            padding: 15px; /* Più spazio interno */
+	        }
+
+	        .btn-secondary {
+	            background-color: #6c757d; /* Colore grigio per il pulsante Annulla */
+	            color: white;
+	        }
+
+	        .btn-secondary:hover {
+	            background-color: #5a6268; /* Colore grigio scuro al hover */
+	        }
+			</style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Cerca Appunti</h1>
+        <form action="/searchAppunti" method="get" class="mt-4">
+            <div class="mb-3">
+                <label for="keyword" class="form-label">Nome dell'utente o titolo dell'appunto:</label>
+                <input type="text" id="keyword" name="keyword" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Cerca</button>
+        </form>
+        <div class="text-center mt-4">
+            <a href="/" class="btn btn-secondary">Torna al Menu</a>
+        </div>
+    </div>
+</body>
+</html>

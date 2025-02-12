@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dettagli Appunto</title>
+    <link rel="icon" href="/images/icons8-punta-della-matita-32.png" type="image/png" sizes="40x40">
+    <style>
+        body {
+            background-color: #f0f4f8;
+            background-image: url("https://www.uniroma3.it/assets/img/uniroma3_logo.png");
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+            width: 90%;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        h4 {
+            font-size: 24px;
+            color: #5d8a98;
+        }
+
+        h5 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        pre {
+            font-size: 18px;
+            background-color: #f7f9fb;
+            padding: 15px;
+            border-radius: 10px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            margin-bottom: 20px;
+            width: 100%;
+            overflow-wrap: break-word;
+        }
+
+        p {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background-color: #5d8a98;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 12px;
+            font-size: 18px;
+            margin: 10px;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background-color: #4a6a73;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .mt-4 {
+            margin-top: 40px;
+        }
+
+        .recensioni-container {
+            margin-top: 40px;
+            text-align: left;
+        }
+
+        .recensione-item {
+            background-color: #f7f9fb;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .recensione-item h5 {
+            margin: 0;
+            color: #5d8a98;
+        }
+
+        .recensione-item p {
+            color: #555;
+        }
+
+        .voto-numerico {
+            font-weight: bold;
+            color: #FFD700; /* Colore oro per il voto */
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center" th:text="${appunto.nome}"></h1>
+        <h4 class="text-muted" th:text="${appunto.materia.nome}"></h4>
+
+        <div class="mt-4">
+            <h5>Contenuto:</h5>
+            <pre th:text="${appunto.contenuto}"></pre>
+        </div>
+
+        <div class="mt-4">
+            <h5>Data di Creazione:</h5>
+            <p th:text="${appunto.dataCreazione}"></p>
+        </div>
+
+        <div class="text-center mt-4">
+            <a href="/listaAppunti" class="btn">Torna alla Lista</a>
+        </div>
+
+        <!-- Sezione Recensioni -->
+        <div class="recensioni-container" th:if="${#lists.isEmpty(recensioni) == false}">
+            <h3>Recensioni</h3>
+            <div th:each="recensione : ${recensioni}" class="recensione-item">
+                <h5 th:text="${recensione.utente.nome} + ' ' + ${recensione.utente.cognome}">Autore della recensione</h5>
+                <p class="voto-numerico" th:text="'Voto: ' + ${recensione.stelle}">Voto: 4</p>
+                <p th:text="${recensione.commento}">Testo della recensione</p>
+                <p><strong>Data:</strong> <span th:text="${recensione.dataCommento}">Data della recensione</span></p>
+            </div>
+        </div>
+
+        <div th:if="${#lists.isEmpty(recensioni)}">
+            <p>Non ci sono recensioni per questo appunto.</p>
+        </div>
+    </div>
+</body>
+</html>

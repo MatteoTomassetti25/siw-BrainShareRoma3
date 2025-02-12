@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Elenco Recensioni</title>
+  <link rel="icon" href="/images/icons8-punta-della-matita-32.png" type="image/png" sizes="40x40">
+    <style>
+		body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: darkgrey;
+}
+
+.container {
+    width: 80%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+#home-button {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+}
+
+
+.auth-buttons {
+    display: flex;
+    align-items: center;
+}
+
+.auth-buttons a, .auth-buttons span {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+}
+
+
+h2 {
+    color: #333;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.table th, .table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+.table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+	</style>
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- PULSANTE LOGIN/LOGOUT -->
+        <header>
+            <nav>
+                <a href="/" id="home-button">Home</a>
+                <div class="auth-buttons">
+                    <div th:if="${userDetails}">
+                        <span th:text="${userDetails.username}"></span>
+                        <a href="/logout">Logout</a>
+                    </div>
+                    <div sec:authorize="!isAuthenticated()">
+                        <a href="/login">Login</a>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        
+        <main>
+			<div><img src="/images/logo-siw.png" width="10%"/></a></div>
+            <h2>Elenco Recensioni</h2>
+            <div th:if="${recensioni == null || recensioni.isEmpty()}">Non ci sono Recensioni nel sistema</div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Ricetta</th>
+                        <th>Voto</th>
+                        <th>Commento</th>
+                        <th>Utente</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="recensione : ${recensioni}">
+                        <td><a th:href="@{'/ricetta' + '/' + ${recensione.ricetta.id}}" th:text="${recensione.ricetta.nome}">Ricetta</a></td>
+                        <td th:text="${recensione.voto}">Voto</td>
+                        <td th:text="${recensione.commento}">Commento</td>
+                        <td th:text="${recensione.utente.nome}">Utente</td> 
+                    </tr>
+                </tbody>
+            </table>
+        </main>
+    </div>
+</body>
+</html>

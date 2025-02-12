@@ -243,7 +243,7 @@ public class AppuntoController {
 	        }
 	        
 	        if (appunto == null) {
-	            // Se la materia non esiste, reindirizza a una pagina di errore o alla lista delle materie
+	            // Se la materia non esiste, reindirizza alla lista delle materie
 	            return "listaAppuntiPropri";
 	        }
 	        // Passa la materia al modello per popolare il form di modifica

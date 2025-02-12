@@ -76,7 +76,7 @@ public class RecensioneController {
         Utente utenteRecensione = this.utenteService.findByUsername(userDetails.getUsername());
         
         if (appunto == null) {
-            return "error"; // Puoi creare una pagina di errore personalizzata
+            return "error";
         }
         
         
